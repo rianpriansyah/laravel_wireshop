@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Shop;
 
+use App\Facades\Cart;
 use App\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -26,5 +27,12 @@ class Index extends Component
         return view('livewire.shop.index', [
             'products' => $this->search === null ? Product::latest()->paginate(8) : Product::latest()->where('title', 'like', '%' . $this->search . '%')->paginate(8)
         ]);
+    }
+
+    public function addToCart($productId) {
+        $product = Product::find($productId);
+        $cart = Cart::add($product);
+        $this->emit('addToCart');
+        // dd(Cart::get()['products']);
     }
 }
