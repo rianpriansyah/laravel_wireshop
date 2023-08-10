@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Shop;
 
+use App\Facades\Cart;
 use Livewire\Component;
 
 class Checkout extends Component
@@ -62,7 +63,7 @@ class Checkout extends Component
 
         $payload = [
             'transaction_details' => $transactionDetails,
-            'customer_details' => $cutomerDetails,
+            'customer_details' => $customerDetails,
         ];
 
         $this->formCheckout = false;
